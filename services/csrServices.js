@@ -162,25 +162,24 @@ exports.CSR5 = (req, res) => {
     if (err) {
       return res.status(400).send("Error uploading image.");
     }
-    // console.log(res);
-    // You can save the image to the database here
-    // Adjust the database code as per your needs
 
     const imagePath = `${filename}`;
 
     const sql =
-      "INSERT INTO csr (csr5_img, csr5_title, csr5_txt, username) VALUES (?,?,?,?)";
-    // "UPDATE csr SET csr5_img = ?,  csr5_title = ?, csr5_txt= ? WHERE username = ?";
+      "INSERT INTO csr (csr5_img, csr5_title, csr5_txt, username) VALUES (?, ?, ?, ?)";
+
     pool.query(sql, [imagePath, title, text, username], (err, result) => {
       if (err) {
         console.error("Error inserting image path:", err);
         res.status(500).send("Error inserting image into the database.");
       } else {
-        console.log("Image updated successfully");
-        res.status(200).send("Image updated successfully");
+        console.log("Image inserted successfully");
+        res.status(200).send("Image inserted successfully");
       }
     });
-  };
+  });
+};
+
   exports.getcsrPageData = (req, res) => {
     const { username } = req.query;
     // Create a SQL query to select data from the 'home' table for the given username

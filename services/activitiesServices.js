@@ -296,14 +296,11 @@ exports.Activities6 = (req, res) => {
     if (err) {
       return res.status(400).send("Error uploading image.");
     }
-    // console.log(res);
-    // You can save the image to the database here
-    // Adjust the database code as per your needs
 
     const imagePath = `${filename}`;
 
     const sql =
-      "UPDATE activities SET ac6_img = ?,  ac6_title = ?, ac6_txt= ? WHERE username = ?";
+      "UPDATE activities SET ac6_img = ?, ac6_title = ?, ac6_txt = ? WHERE username = ?";
     pool.query(sql, [imagePath, title, text, username], (err, result) => {
       if (err) {
         console.error("Error inserting image path:", err);
@@ -313,7 +310,9 @@ exports.Activities6 = (req, res) => {
         res.status(200).send("Image updated successfully");
       }
     });
-  };
+  });
+};
+
   exports.getActivitiesPageData = (req, res) => {
     const { username } = req.query;
     // Create a SQL query to select data from the 'home' table for the given username
