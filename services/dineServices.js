@@ -166,7 +166,7 @@ exports.Restaurant5 = (req, res) => {
     const imagePath = `${filename}`;
 
     const sql =
-      "INSERT INTO dinein (rest5_img, rest5_title, rest5_txt, username) VALUES (?, ?, ?, ?)";
+      "UPDATE dinein SET rest5_img = ?,  rest5_title = ?, rest5_txt= ? WHERE username = ?";
 
     pool.query(sql, [imagePath, title, text, username], (err, result) => {
       if (err) {
@@ -180,26 +180,26 @@ exports.Restaurant5 = (req, res) => {
   });
 };
 
-  exports.getDinePageData = (req, res) => {
-    const { username } = req.query;
-    // Create a SQL query to select data from the 'home' table for the given username
-    const sql = "SELECT * FROM dinein WHERE username = ?";
-    
-    // Execute the SQL query with the username as a parameter
-    pool.query(sql, [username], (err, results) => {
-      if (err) {
-        console.error("Error retrieving home page data:", err);
-        res.status(500).send("Error retrieving data from the database.");
+exports.getDinePageData = (req, res) => {
+  const { username } = req.query;
+  // Create a SQL query to select data from the 'home' table for the given username
+  const sql = "SELECT * FROM dinein WHERE username = ?";
+
+  // Execute the SQL query with the username as a parameter
+  pool.query(sql, [username], (err, results) => {
+    if (err) {
+      console.error("Error retrieving home page data:", err);
+      res.status(500).send("Error retrieving data from the database.");
+    } else {
+      // Check if any rows were returned
+      if (results.length > 0) {
+        // Data retrieved successfully
+        const homeData = results[0]; // Assuming there's only one row for a given username
+        res.status(200).json(homeData);
       } else {
-        // Check if any rows were returned
-        if (results.length > 0) {
-          // Data retrieved successfully
-          const homeData = results[0]; // Assuming there's only one row for a given username
-          res.status(200).json(homeData);
-        } else {
-          // No data found for the given username
-          res.status(404).send("No data found for the provided username.");
-        }
+        // No data found for the given username
+        res.status(404).send("No data found for the provided username.");
       }
-    });
-  };
+    }
+  });
+};
