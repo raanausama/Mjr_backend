@@ -8,7 +8,7 @@ app.use(express.static("uploads"));
 exports.sliderText = async (req, res) => {
     const { text, username } = req.body;
   try {
-    const sql = 'INSERT INTO home (header_txt, username) VALUES(?, ?)';
+    const sql = 'UPDATE home SET header_txt = ? WHERE username = ?';
     await pool.query(sql, [text,username], (err, result) => {
         if (err) {
           console.error('Error inserting text:', err);
@@ -261,8 +261,7 @@ exports.heroSection = (req, res) => {
   };
 
   exports.getHomePageData = (req, res) => {
-    const { username } = req.body;
-  
+    const { username } = req.query;
     // Create a SQL query to select data from the 'home' table for the given username
     const sql = "SELECT * FROM home WHERE username = ?";
     

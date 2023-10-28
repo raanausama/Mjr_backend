@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Hero, Room1, Room2, Room3, Room4, Room5, Room6, Room7, Room8 } = require("../services/staycationServices");
+const { Hero, Room1, Room2, Room3, Room4, Room5, Room6, Room7, Room8, getStaycationPageData } = require("../services/staycationServices");
 const router = Router();
 
 //register
@@ -12,5 +12,6 @@ router.route("/room5").post(Room5);
 router.route("/room6").post(Room6);
 router.route("/room7").post(Room7);
 router.route("/room8").post(Room8);
+router.route("/getStaycationPageData").get(getStaycationPageData);
 
 module.exports = router;

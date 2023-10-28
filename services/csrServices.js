@@ -180,5 +180,28 @@ exports.CSR5 = (req, res) => {
         res.status(200).send("Image updated successfully");
       }
     });
-  });
-};
+  };
+  exports.getcsrPageData = (req, res) => {
+    const { username } = req.query;
+    // Create a SQL query to select data from the 'home' table for the given username
+    const sql = "SELECT * FROM csr WHERE username = ?";
+    
+    // Execute the SQL query with the username as a parameter
+    pool.query(sql, [username], (err, results) => {
+      if (err) {
+        console.error("Error retrieving home page data:", err);
+        res.status(500).send("Error retrieving data from the database.");
+      } else {
+        // Check if any rows were returned
+        if (results.length > 0) {
+          // Data retrieved successfully
+          const homeData = results[0]; // Assuming there's only one row for a given username
+          res.status(200).json(homeData);
+        } else {
+          // No data found for the given username
+          res.status(404).send("No data found for the provided username.");
+        }
+      }
+    });
+  };
+
