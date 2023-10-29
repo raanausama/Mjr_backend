@@ -19,6 +19,7 @@ const dineRouter = require("./routes/dineRoutes.js");
 const csrRouter = require("./routes/csrRoutes.js");
 const activitiesRouter = require("./routes/activitiesRoutes.js");
 const staycationRouter = require("./routes/staycationRoutes.js");
+const slopeRouter = require("./routes/slopeRoutes.js");
 
 //register and login routes
 app.use("/auth", loginRouter);
@@ -31,6 +32,7 @@ app.use("/dine", dineRouter);
 app.use("/csr", csrRouter);
 app.use("/activities", activitiesRouter);
 app.use("/staycation", staycationRouter);
+app.use("/slope", slopeRouter);
 
 app.listen(5000, () => {
   console.log("server is now running at 5000");
