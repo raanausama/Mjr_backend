@@ -9,6 +9,10 @@ const {
   d1,
   d2,
   d3,
+  pistonSection,
+  p1,
+  p2,
+  team,
   getSlopePageData,
 } = require("../services/slopeServices");
 const router = Router();
@@ -23,6 +27,10 @@ router.route("/techSection").post(techSection);
 router.route("/t1").post(t1);
 router.route("/t2").post(t2);
 router.route("/t3").post(t3);
+router.route("/pistonSection").post(pistonSection);
+router.route("/p1").post(p1);
+router.route("/p2").post(p2);
+router.route("/team").post(team);
 router.route("/getSlopePageData").get(getSlopePageData);
 
 module.exports = router;

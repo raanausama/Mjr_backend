@@ -268,6 +268,115 @@ exports.techSection = (req, res) => {
     });
   });
 };
+exports.pistonSection = (req, res) => {
+  upload.single("image")(req, res, (err) => {
+    const { piston_title, piston_txt, username } = req.body;
+    //   const filename = req.file.originalname;
+
+    if (err) {
+      return res.status(400).send("Error uploading image.");
+    }
+    // console.log(res);
+    // You can save the image to the database here
+    // Adjust the database code as per your needs
+
+    //   const imagePath = `${filename}`;
+
+    const sql =
+      "UPDATE slope SET piston_title = ?, piston_txt= ? WHERE username = ?";
+    //   "INSERT into slope (ski_title1, ski_title2, ski_txt username) VALUES (?, ?, ?, ?) ";
+    pool.query(sql, [piston_title, piston_txt, username], (err, result) => {
+      if (err) {
+        console.error("Error inserting image path:", err);
+        res.status(500).send("Error inserting image into the database.");
+      } else {
+        console.log("Image updated successfully");
+        res.status(200).send("Image updated successfully");
+      }
+    });
+  });
+};
+exports.p1 = (req, res) => {
+  upload.single("image")(req, res, (err) => {
+    const { username } = req.body;
+    const filename = req.file.originalname;
+
+    if (err) {
+      return res.status(400).send("Error uploading image.");
+    }
+    // console.log(res);
+    // You can save the image to the database here
+    // Adjust the database code as per your needs
+
+    const imagePath = `${filename}`;
+
+    const sql = "UPDATE slope SET piston_img1 = ? WHERE username = ?";
+    // "INSERT into staycation (hero_img , welcome_txt, heading1_txt, heading2_txt, username) VALUES (?, ?, ?, ?, ?) ";
+    pool.query(sql, [imagePath, username], (err, result) => {
+      if (err) {
+        console.error("Error inserting image path:", err);
+        res.status(500).send("Error inserting image into the database.");
+      } else {
+        console.log("Image updated successfully");
+        res.status(200).send("Image updated successfully");
+      }
+    });
+  });
+};
+exports.p2 = (req, res) => {
+  upload.single("image")(req, res, (err) => {
+    const { username } = req.body;
+    const filename = req.file.originalname;
+
+    if (err) {
+      return res.status(400).send("Error uploading image.");
+    }
+    // console.log(res);
+    // You can save the image to the database here
+    // Adjust the database code as per your needs
+
+    const imagePath = `${filename}`;
+
+    const sql = "UPDATE slope SET piston_img2 = ? WHERE username = ?";
+    // "INSERT into staycation (hero_img , welcome_txt, heading1_txt, heading2_txt, username) VALUES (?, ?, ?, ?, ?) ";
+    pool.query(sql, [imagePath, username], (err, result) => {
+      if (err) {
+        console.error("Error inserting image path:", err);
+        res.status(500).send("Error inserting image into the database.");
+      } else {
+        console.log("Image updated successfully");
+        res.status(200).send("Image updated successfully");
+      }
+    });
+  });
+};
+exports.team = (req, res) => {
+  upload.single("image")(req, res, (err) => {
+    const { username } = req.body;
+    const filename = req.file.originalname;
+
+    if (err) {
+      return res.status(400).send("Error uploading image.");
+    }
+    // console.log(res);
+    // You can save the image to the database here
+    // Adjust the database code as per your needs
+
+    const imagePath = `${filename}`;
+
+    const sql = "UPDATE slope SET team_img = ? WHERE username = ?";
+    // "INSERT into staycation (hero_img , welcome_txt, heading1_txt, heading2_txt, username) VALUES (?, ?, ?, ?, ?) ";
+    pool.query(sql, [imagePath, username], (err, result) => {
+      if (err) {
+        console.error("Error inserting image path:", err);
+        res.status(500).send("Error inserting image into the database.");
+      } else {
+        console.log("Image updated successfully");
+        res.status(200).send("Image updated successfully");
+      }
+    });
+  });
+};
 exports.getSlopePageData = (req, res) => {
   const { username } = req.query;
   // Create a SQL query to select data from the 'staycation' table for the given username

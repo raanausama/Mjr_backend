@@ -1,5 +1,24 @@
 const { Router } = require("express");
-const { Hero,w1,w2,w3, Room1, Room2, Room3, Room4, Room5, Room6, Room7, Room8, getStaycationPageData } = require("../services/staycationServices");
+const {
+  Hero,
+  w1,
+  w2,
+  w3,
+  Room1,
+  Room2,
+  Room3,
+  Room4,
+  Room5,
+  Room6,
+  Room7,
+  Room8,
+  Room9,
+  accomodation1,
+  accomodation2,
+  accomodation3,
+  accomodation4,
+  getStaycationPageData,
+} = require("../services/staycationServices");
 const router = Router();
 
 //register
@@ -17,6 +36,11 @@ router.route("/room5").post(Room5);
 router.route("/room6").post(Room6);
 router.route("/room7").post(Room7);
 router.route("/room8").post(Room8);
+router.route("/room9").post(Room9);
+router.route("/accomodation1").post(accomodation1);
+router.route("/accomodation2").post(accomodation2);
+router.route("/accomodation3").post(accomodation3);
+router.route("/accomodation4").post(accomodation4);
 router.route("/getStaycationPageData").get(getStaycationPageData);
 
 module.exports = router;

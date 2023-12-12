@@ -360,6 +360,142 @@ exports.Room8 = (req, res) => {
     });
   });
 };
+exports.Room9 = (req, res) => {
+  upload.single("image")(req, res, (err) => {
+    const { title, text, username } = req.body;
+    const filename = req.file.originalname;
+
+    if (err) {
+      return res.status(400).send("Error uploading image.");
+    }
+    // console.log(res);
+    // You can save the image to the database here
+    // Adjust the database code as per your needs
+
+    const imagePath = `${filename}`;
+
+    const sql =
+      "UPDATE staycation SET room9_img = ?,  room9_title = ?, room9_txt= ? WHERE username = ?";
+    pool.query(sql, [imagePath, title, text, username], (err, result) => {
+      if (err) {
+        console.error("Error inserting image path:", err);
+        res.status(500).send("Error inserting image into the database.");
+      } else {
+        console.log("Image updated successfully");
+        res.status(200).send("Image updated successfully");
+      }
+    });
+  });
+};
+
+exports.accomodation1 = (req, res) => {
+  upload.single("image")(req, res, (err) => {
+    const { title, text, username } = req.body;
+    const filename = req.file.originalname;
+
+    if (err) {
+      return res.status(400).send("Error uploading image.");
+    }
+    // console.log(res);
+    // You can save the image to the database here
+    // Adjust the database code as per your needs
+
+    const imagePath = `${filename}`;
+
+    const sql =
+      "UPDATE staycation SET accomodation1_img = ?,  accomodation1_title = ?, accomodation1_txt= ? WHERE username = ?";
+    pool.query(sql, [imagePath, title, text, username], (err, result) => {
+      if (err) {
+        console.error("Error inserting image path:", err);
+        res.status(500).send("Error inserting image into the database.");
+      } else {
+        console.log("Image updated successfully");
+        res.status(200).send("Image updated successfully");
+      }
+    });
+  });
+};
+exports.accomodation2 = (req, res) => {
+  upload.single("image")(req, res, (err) => {
+    const { title, text, username } = req.body;
+    const filename = req.file.originalname;
+
+    if (err) {
+      return res.status(400).send("Error uploading image.");
+    }
+    // console.log(res);
+    // You can save the image to the database here
+    // Adjust the database code as per your needs
+
+    const imagePath = `${filename}`;
+
+    const sql =
+      "UPDATE staycation SET accomodation2_img = ?,  accomodation2_title = ?, accomodation2_txt= ? WHERE username = ?";
+    pool.query(sql, [imagePath, title, text, username], (err, result) => {
+      if (err) {
+        console.error("Error inserting image path:", err);
+        res.status(500).send("Error inserting image into the database.");
+      } else {
+        console.log("Image updated successfully");
+        res.status(200).send("Image updated successfully");
+      }
+    });
+  });
+};
+exports.accomodation3 = (req, res) => {
+  upload.single("image")(req, res, (err) => {
+    const { title, text, username } = req.body;
+    const filename = req.file.originalname;
+
+    if (err) {
+      return res.status(400).send("Error uploading image.");
+    }
+    // console.log(res);
+    // You can save the image to the database here
+    // Adjust the database code as per your needs
+
+    const imagePath = `${filename}`;
+
+    const sql =
+      "UPDATE staycation SET accomodation3_img = ?,  accomodation3_title = ?, accomodation3_txt= ? WHERE username = ?";
+    pool.query(sql, [imagePath, title, text, username], (err, result) => {
+      if (err) {
+        console.error("Error inserting image path:", err);
+        res.status(500).send("Error inserting image into the database.");
+      } else {
+        console.log("Image updated successfully");
+        res.status(200).send("Image updated successfully");
+      }
+    });
+  });
+};
+exports.accomodation4 = (req, res) => {
+  upload.single("image")(req, res, (err) => {
+    const { title, text, username } = req.body;
+    const filename = req.file.originalname;
+
+    if (err) {
+      return res.status(400).send("Error uploading image.");
+    }
+    // console.log(res);
+    // You can save the image to the database here
+    // Adjust the database code as per your needs
+
+    const imagePath = `${filename}`;
+
+    const sql =
+      "UPDATE staycation SET accomodation4_img = ?,  accomodation4_title = ?, accomodation4_txt= ? WHERE username = ?";
+    pool.query(sql, [imagePath, title, text, username], (err, result) => {
+      if (err) {
+        console.error("Error inserting image path:", err);
+        res.status(500).send("Error inserting image into the database.");
+      } else {
+        console.log("Image updated successfully");
+        res.status(200).send("Image updated successfully");
+      }
+    });
+  });
+};
 exports.getStaycationPageData = (req, res) => {
   const { username } = req.query;
   // Create a SQL query to select data from the 'staycation' table for the given username
