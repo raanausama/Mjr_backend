@@ -13,7 +13,7 @@ router.route("/activities2").post(Activities2);
 router.route("/activities3").post(Activities3);
 router.route("/activities4").post(Activities4);
 router.route("/activities5").post(Activities5);
-router.route("/activities6").post(Activities6);
+// router.route("/activities6").post(Activities6);
 router.route("/getActivitiesPageData").get(getActivitiesPageData);
 
 module.exports = router;

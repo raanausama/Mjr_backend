@@ -179,7 +179,56 @@ exports.Restaurant5 = (req, res) => {
     });
   });
 };
+exports.Restaurant6 = (req, res) => {
+  upload.single("image")(req, res, (err) => {
+    const { title, text, username } = req.body;
+    const filename = req.file.originalname;
 
+    if (err) {
+      return res.status(400).send("Error uploading image.");
+    }
+
+    const imagePath = `${filename}`;
+
+    const sql =
+      "UPDATE dinein SET rest6_img = ?,  rest6_title = ?, rest6_txt= ? WHERE username = ?";
+
+    pool.query(sql, [imagePath, title, text, username], (err, result) => {
+      if (err) {
+        console.error("Error inserting image path:", err);
+        res.status(500).send("Error inserting image into the database.");
+      } else {
+        console.log("Image inserted successfully");
+        res.status(200).send("Image inserted successfully");
+      }
+    });
+  });
+};
+exports.Restaurant7 = (req, res) => {
+  upload.single("image")(req, res, (err) => {
+    const { title, text, username } = req.body;
+    const filename = req.file.originalname;
+
+    if (err) {
+      return res.status(400).send("Error uploading image.");
+    }
+
+    const imagePath = `${filename}`;
+
+    const sql =
+      "UPDATE dinein SET rest7_img = ?,  rest7_title = ?, rest7_txt= ? WHERE username = ?";
+
+    pool.query(sql, [imagePath, title, text, username], (err, result) => {
+      if (err) {
+        console.error("Error inserting image path:", err);
+        res.status(500).send("Error inserting image into the database.");
+      } else {
+        console.log("Image inserted successfully");
+        res.status(200).send("Image inserted successfully");
+      }
+    });
+  });
+};
 exports.getDinePageData = (req, res) => {
   const { username } = req.query;
   // Create a SQL query to select data from the 'home' table for the given username
