@@ -46,6 +46,21 @@ exports.heroSection = (req, res) => {
     );
   });
 };
+
+exports.aboutResort = (req, res) => {
+  const { username, aboutTitle, aboutText } = req.body;
+  const sql = "UPDATE slope SET about_title=?, about_text=? WHERE username= ?";
+  pool.query(sql, [aboutTitle, aboutText, username], (err, result) => {
+    if (err) {
+      console.log("Error inserting data", err);
+      res.status(500).send("error inserting data into database");
+    } else {
+      console.log("Data updated successfully");
+      res.status(200).send("Data updated successfully");
+    }
+  });
+};
+
 exports.t1 = (req, res) => {
   upload.single("image")(req, res, (err) => {
     const { username } = req.body;

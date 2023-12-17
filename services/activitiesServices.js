@@ -275,7 +275,7 @@ exports.Activities1 = (req, res) => {
 };
 exports.Activities2 = (req, res) => {
   upload.single("image")(req, res, (err) => {
-    const { title, text, ticketPrice, username } = req.body;
+    const { title, text, ticketPrice, hiketozip, username } = req.body;
     const filename = req.file.originalname;
 
     if (err) {
@@ -288,10 +288,10 @@ exports.Activities2 = (req, res) => {
     const imagePath = `${filename}`;
 
     const sql =
-      "UPDATE activities SET ac2_img = ?,  ac2_title = ?, ac2_txt= ?,ticketPrice=? WHERE username = ?";
+      "UPDATE activities SET ac2_img = ?,  ac2_title = ?, ac2_txt= ?,ticketPrice=?,hiketozip=? WHERE username = ?";
     pool.query(
       sql,
-      [imagePath, title, text, ticketPrice, username],
+      [imagePath, title, text, ticketPrice, hiketozip, username],
       (err, result) => {
         if (err) {
           console.error("Error inserting image path:", err);
@@ -373,8 +373,7 @@ exports.Activities5 = (req, res) => {
       text,
       username,
       ticketPrice,
-      quickchairlift,
-      hikechairlift,
+      
     } = req.body;
     const filename = req.file.originalname;
 
@@ -388,7 +387,7 @@ exports.Activities5 = (req, res) => {
     const imagePath = `${filename}`;
 
     const sql =
-      "UPDATE activities SET ac5_img = ?,  ac5_title = ?, ac5_txt= ?,ticketPrice=?,quickchairlift=?,hikechairlift=? WHERE username = ?";
+      "UPDATE activities SET ac5_img = ?,  ac5_title = ?, ac5_txt= ?,ticketPrice=? WHERE username = ?";
     pool.query(
       sql,
       [
@@ -396,8 +395,6 @@ exports.Activities5 = (req, res) => {
         title,
         text,
         ticketPrice,
-        quickchairlift,
-        hikechairlift,
         username,
       ],
       (err, result) => {
@@ -412,30 +409,31 @@ exports.Activities5 = (req, res) => {
     );
   });
 };
-exports.Activities6 = (req, res) => {
-  upload.single("image")(req, res, (err) => {
-    const { title, text, username } = req.body;
-    const filename = req.file.originalname;
 
-    if (err) {
-      return res.status(400).send("Error uploading image.");
-    }
+// exports.Activities6 = (req, res) => {
+//   upload.single("image")(req, res, (err) => {
+//     const { title, text, username } = req.body;
+//     const filename = req.file.originalname;
 
-    const imagePath = `${filename}`;
+//     if (err) {
+//       return res.status(400).send("Error uploading image.");
+//     }
 
-    const sql =
-      "UPDATE activities SET ac6_img = ?, ac6_title = ?, ac6_txt = ? WHERE username = ?";
-    pool.query(sql, [imagePath, title, text, username], (err, result) => {
-      if (err) {
-        console.error("Error inserting image path:", err);
-        res.status(500).send("Error inserting image into the database.");
-      } else {
-        console.log("Image updated successfully");
-        res.status(200).send("Image updated successfully");
-      }
-    });
-  });
-};
+//     const imagePath = `${filename}`;
+
+//     const sql =
+//       "UPDATE activities SET ac6_img = ?, ac6_title = ?, ac6_txt = ? WHERE username = ?";
+//     pool.query(sql, [imagePath, title, text, username], (err, result) => {
+//       if (err) {
+//         console.error("Error inserting image path:", err);
+//         res.status(500).send("Error inserting image into the database.");
+//       } else {
+//         console.log("Image updated successfully");
+//         res.status(200).send("Image updated successfully");
+//       }
+//     });
+//   });
+// };
 
 exports.getActivitiesPageData = (req, res) => {
   const { username } = req.query;
