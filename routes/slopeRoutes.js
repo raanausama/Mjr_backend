@@ -14,10 +14,12 @@ const {
   p2,
   team,
   getSlopePageData,
+  aboutResort,
 } = require("../services/slopeServices");
 const router = Router();
 
 router.route("/heroSection").post(heroSection);
+router.route("/aboutResort").post(aboutResort);
 router.route("/descriptionSection").post(descriptionSection);
 router.route("/d1").post(d1);
 router.route("/d2").post(d2);
