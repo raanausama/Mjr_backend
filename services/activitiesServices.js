@@ -91,7 +91,7 @@ exports.Card1 = (req, res) => {
     const imagePath = `${filename}`;
 
     const sql =
-      "UPDATE activities SET card1_img = ?,  card1_title = ?, card1_txt= ?, card1_hourlyrate= ?, = card1_halfdayrate?, card1_fulldayrate= ? WHERE username = ?";
+      "UPDATE activities SET card1_img = ?,  card1_title = ?, card1_txt= ?, card1_hourlyrate= ?, card1_halfdayrate= ?, card1_fulldayrate= ? WHERE username = ?";
     // "INSERT into activities (card1_img, card1_title, card1_txt, username) VALUES (?,?,?,?)";
     pool.query(
       sql,
@@ -244,7 +244,14 @@ exports.Card4 = (req, res) => {
 };
 exports.Activities1 = (req, res) => {
   upload.single("image")(req, res, (err) => {
-    const { title, text, username, ac1_ticketPrice, ac1_hiketozip } = req.body;
+    const {
+      title,
+      text,
+      username,
+      ac1_ticketPrice,
+      ac1_quickAccess,
+      ac1_hiketozip,
+    } = req.body;
     const filename = req.file.originalname;
 
     if (err) {
@@ -257,10 +264,18 @@ exports.Activities1 = (req, res) => {
     const imagePath = `${filename}`;
 
     const sql =
-      "UPDATE activities SET ac1_img = ?,  ac1_title = ?, ac1_txt= ?,ac1_ticketPrice=?,ac1_hiketozip=?  WHERE username = ?";
+      "UPDATE activities SET ac1_img = ?,  ac1_title = ?, ac1_txt= ?,ac1_quickAccess=?,ac1_ticketPrice=?,ac1_hiketozip=?  WHERE username = ?";
     pool.query(
       sql,
-      [imagePath, title, text, ac1_ticketPrice, ac1_hiketozip, username],
+      [
+        imagePath,
+        title,
+        text,
+        ac1_ticketPrice,
+        ac1_quickAccess,
+        ac1_hiketozip,
+        username,
+      ],
       (err, result) => {
         if (err) {
           console.error("Error inserting image path:", err);
@@ -368,13 +383,7 @@ exports.Activities4 = (req, res) => {
 };
 exports.Activities5 = (req, res) => {
   upload.single("image")(req, res, (err) => {
-    const {
-      title,
-      text,
-      username,
-      ac5_ticketPrice,
-      
-    } = req.body;
+    const { title, text, username, ac5_ticketPrice } = req.body;
     const filename = req.file.originalname;
 
     if (err) {
@@ -390,13 +399,7 @@ exports.Activities5 = (req, res) => {
       "UPDATE activities SET ac5_img = ?,  ac5_title = ?, ac5_txt= ?,ac5_ticketPrice=? WHERE username = ?";
     pool.query(
       sql,
-      [
-        imagePath,
-        title,
-        text,
-        ac5_ticketPrice,
-        username,
-      ],
+      [imagePath, title, text, ac5_ticketPrice, username],
       (err, result) => {
         if (err) {
           console.error("Error inserting image path:", err);
